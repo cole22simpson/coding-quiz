@@ -1,5 +1,5 @@
 var totalTime = 75;
-
+var i = 0;
 
 var pageContentEl = document.querySelector(".page-content");
 var startQuizEl = document.querySelector("#start");
@@ -9,10 +9,9 @@ var correctAnswerEl = document.querySelector("button[name='correct']");
 var incorrectAnswerEl = document.querySelector(".incorrect");
 var highScoreEl = document.querySelector("#leaderboard");
 
-var questionNumber = 1;
-
 var questionContent = [    
     {
+        n: "Question 1",
         q: "What symbol do we use as an AND operator?",
         a: "!",
         b: "&&",
@@ -21,6 +20,7 @@ var questionContent = [
     },
 
     {
+        n: "Question 2",
         q: "Which one isn't a string?",
         a: "\"winner\"",
         b: 5,
@@ -29,6 +29,7 @@ var questionContent = [
     },
     
     {
+        n: "Question 3",
         q: "Which do you use to present a message to the user?",
         a: "window.prompt();",
         b: "window.alert();",
@@ -37,6 +38,7 @@ var questionContent = [
     },
 
     {
+        n: "Question 4",
         q: "How do you call a function?",
         a: "functionName!",
         b: "functionName();",
@@ -45,6 +47,7 @@ var questionContent = [
     },
 
     {
+        n: "Question 5",
         q: "What shortcut creates the basics of an HTML page?",
         a: "html.new Enter",
         b: "html:5 Enter",
@@ -53,18 +56,18 @@ var questionContent = [
     }
 ]
 
-var timerStart = setInterval(function() {
-    if(totalTime <= 0) {
+var timerStart = function() {
+    if (totalTime <= 0) {
         totalTime = 0;
-        clearInterval(timerStart);
         document.getElementById("time").innerHTML = "Time's Up!";
+        endGame();
     }
 
     else {
         document.getElementById("time").innerHTML ="Time Remaining: " + totalTime + "s";
     }
     totalTime -= 1;
-}, 7500);
+};
 
 var buttonHandler = function(event) {
     var targetEl = event.target;
@@ -79,22 +82,27 @@ var buttonHandler = function(event) {
     }
 
     else if (targetEl.matches(".correct")) {
-        console.log("correct");
         nextQuestion();
+        console.log("correct");
+        //window.alert("Correct!");
     }
 
     else if (targetEl.matches(".incorrect")) {
+        totalTime -= 10;
         console.log("incorrect");
+        //window.alert("Incorrect! Try again.");
     }
 };
 
 var startQuiz = function() {
+
+    setInterval(timerStart, 1000);
     
     deleteContentEl.remove();
 
     var newTitleEl = document.createElement("div");
     newTitleEl.className = "new-title";
-    newTitleEl.innerHTML = "<h2 class='title-style'>Question " + (questionNumber++) + "</h2>";
+    newTitleEl.innerHTML = "<h2 class='title-style'></h2>";
     newContentEl.appendChild(newTitleEl);
 
     var newQuestionEl = document.createElement("div");
@@ -115,8 +123,10 @@ var startQuiz = function() {
 };
 
 var nextQuestion = function(event) {
-    for (var i = 0; i < questionContent.length; i++) {
-        
+
+
+        var number = document.querySelector(".title-style").textContent = questionContent[i].n;
+
         var question = document.querySelector(".question").textContent = questionContent[i].q;
         
         var answerOne = document.querySelector('#answer-one').textContent = questionContent[i].a;
@@ -126,14 +136,23 @@ var nextQuestion = function(event) {
         var answerThree = document.querySelector('#answer-three').textContent = questionContent[i].c;
 
         var answerFour = document.querySelector('#answer-four').textContent = questionContent[i].d;
+        
+        i++;
 
         console.log("next question");
-    }
-}
 
-var correctAnswer = function(event) {
+        console.log(i);
+
+        if (i === 5) {
+            endGame();
+        }
     
 };
+
+var endGame = function() {
+    clearInterval(timerStart);
+    console.log("end game");
+}
 
 //var nextQuestion = function();
 
