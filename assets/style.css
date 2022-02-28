@@ -39,7 +39,7 @@ main {
 }
 
 .directions-text {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 750px;
     line-height: 2;
     text-align: left;
@@ -69,5 +69,47 @@ h1 {
 }
 
 .btn:hover {
-    background-color: rgb(66, 66, 117, .8)
+    background-color: rgb(66, 66, 117, .8);
+}
+
+.incorrect {
+    background-color: rgb(59, 59, 173);
+    font-size: 26px;
+    color: white;
+    padding: 10px;
+    font-family:fantasy;
+    border-radius:10px;
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.incorrect:hover {
+    background-color: rgb(66, 66, 117, .8);
+}
+
+.correct {
+    background-color: rgb(59, 59, 173);
+    font-size: 26px;
+    color: white;
+    padding: 10px;
+    font-family:fantasy;
+    border-radius:10px;
+    border: 2px solid black;
+}
+
+.correct:hover {
+    background-color: rgb(66, 66, 117, .8);
+}
+
+.new-title {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
+
+.new-question {
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
